@@ -1,3 +1,4 @@
+
 # Coin Collecting API
 
 GraphQl
