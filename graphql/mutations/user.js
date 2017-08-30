@@ -59,7 +59,7 @@ export const loginUser = {
       throw new UserError('Incorrect password');
     }
 
-    return jwt.sign({user: _.pick(user, ['id', 'email']),}, context.SECRET, {
+    return jwt.sign({user: _.pick(user, ['id', 'email', 'admin']),}, context.SECRET, {
         expiresIn: '1y',
     });
   }

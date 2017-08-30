@@ -17,5 +17,5 @@ export const requiresAuth = createResolver((parent, args, context) => {
 });
 
 export const requiresAdmin = requiresAuth.createResolver((parent, args, context) => {
-  if (!context.user.isAdmin) throw new UserError('Requires Admin Access');
+  if (!context.user.admin) throw new UserError('Requires Admin Access');
 });
