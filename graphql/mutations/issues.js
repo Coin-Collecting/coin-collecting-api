@@ -3,6 +3,7 @@ import { GraphQLString, GraphQLNonNull } from 'graphql';
 const { UserError } = require('graphql-errors')
 import { IssueType } from '../types';
 import { Issue } from '../sequelize';
+import { requiresAdmin } from '../permissions';
 
 export const createIssue = {
   type: IssueType,
@@ -14,7 +15,7 @@ export const createIssue = {
     startYear: { type: new GraphQLNonNull(GraphQLString) },
     endYear: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: (value, args) => {
+  resolve: requiresAdmin.createResolver((value, args) => {
     const {
       name,
       description,
@@ -35,7 +36,7 @@ export const createIssue = {
       startYear,
       endYear,
     });
-  }
+  }),
 };
 
 export const updateIssue = {
@@ -49,7 +50,7 @@ export const updateIssue = {
     startYear: { type: new GraphQLNonNull(GraphQLString) },
     endYear: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: (value, args) => {
+  resolve: requiresAdmin.createResolver((value, args) => {
     const {
       id,
       name,
@@ -72,5 +73,5 @@ export const updateIssue = {
       returning: true,
       plain: true,
     });
-  }
+  }),
 };

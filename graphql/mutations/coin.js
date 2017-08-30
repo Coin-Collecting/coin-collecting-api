@@ -8,6 +8,7 @@ import {
 const { UserError } = require('graphql-errors');
 import { CoinType } from '../types';
 import { Coin } from '../sequelize';
+import { requiresAdmin } from '../permissions';
 
 export const createCoin = {
   type: CoinType,
@@ -20,14 +21,14 @@ export const createCoin = {
     year: { type: new GraphQLNonNull(GraphQLString) },
     description: { type: GraphQLString },
   },
-  resolve: (value, args) => Coin.create({
+  resolve: requiresAdmin.createResolver((value, args) => Coin.create({
     variety: args.variety,
     mint: args.mint,
     mintage: args.mintage,
     keyDate: args.keyDate,
     year: args.year,
     description: args.description,
-  }),
+  })),
 };
 
 export const deleteCoin = {
@@ -36,5 +37,8 @@ export const deleteCoin = {
     args: {
     id: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: (value, { id }) => Coin.destroy({where: { id: id }}),
+  resolve: requiresAdmin.createResolver((value, { id }) => Coin.destroy({
+    where: {
+      id: id,
+    }})),
 };

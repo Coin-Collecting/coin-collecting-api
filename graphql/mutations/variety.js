@@ -3,6 +3,7 @@ import { GraphQLString, GraphQLNonNull } from 'graphql';
 const { UserError } = require('graphql-errors')
 import { VarietyType } from '../types';
 import { Variety } from '../sequelize';
+import { requiresAdmin } from '../permissions';
 
 export const createVariety = {
   type: VarietyType,
@@ -18,7 +19,7 @@ export const createVariety = {
     designer: { type: new GraphQLNonNull(GraphQLString) },
     images: { type: GraphQLString },
   },
-  resolve: (value, args) => {
+  resolve: requiresAdmin.createResolver((value, args) => {
     const {
       name,
       description,
@@ -50,7 +51,7 @@ export const createVariety = {
       designer,
       images,
     });
-  }
+  }),
 };
 
 export const updateVariety = {
@@ -68,7 +69,7 @@ export const updateVariety = {
     designer: { type: new GraphQLNonNull(GraphQLString) },
     images: { type: GraphQLString },
   },
-  resolve: (value, args) => {
+  resolve: requiresAdmin.createResolver((value, args) => {
     const {
       id,
       name,
@@ -99,5 +100,5 @@ export const updateVariety = {
       returning: true,
       plain: true,
     });
-  }
+  }),
 };
