@@ -18,9 +18,27 @@
 --
 -- Table structure for table `coins`
 --
+
 CREATE DATABASE coins_db;
 
 USE coins_db;
+
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(500) DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT 0,
+  `createdAt` timestamp NOT NULL DEFAULT 0,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 
 DROP TABLE IF EXISTS `coins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

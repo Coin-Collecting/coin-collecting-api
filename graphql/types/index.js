@@ -7,6 +7,7 @@ import { EdgeType } from './edge.js';
 import { CompositionType } from  './composition.js';
 import { DenominationType } from './denomination.js';
 import { MintType } from './mint.js';
+import { UserType } from './user.js';
 
 export {
   CoinType,
@@ -18,4 +19,5 @@ export {
   CompositionType,
   DenominationType,
   MintType,
+  UserType,
 }

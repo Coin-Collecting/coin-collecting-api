@@ -3,6 +3,7 @@ import { GraphQLFloat, GraphQLString } from 'graphql';
 const { UserError } = require('graphql-errors')
 import { CompositionType } from '../types';
 import { Composition } from '../sequelize';
+import { requiresAdmin } from '../permissions';
 
 function totalEqualOne(args) {
   let { gold, silver, copper, nickel, brass, zinc, steel, tin } = args;
@@ -29,7 +30,7 @@ export const createComposition = {
     steel: { type: GraphQLFloat },
     tin: { type: GraphQLFloat },
   },
-  resolve: (value, args) => {
+  resolve: requiresAdmin.createResolver((value, args) => {
     if (!totalEqualOne(args)) {
       throw new UserError('The total composition must equal 1.00');
     }
@@ -44,7 +45,7 @@ export const createComposition = {
       steel: args.steel,
       tin: args.tin,
     });
-  }
+  }),
 };
 
 export const updateComposition = {
@@ -61,7 +62,7 @@ export const updateComposition = {
     steel: { type: GraphQLFloat },
     tin: { type: GraphQLFloat },
   },
-  resolve: (value, args) => {
+  resolve: requiresAdmin.createResolver((value, args) => {
     if (!args.id) {
       throw new UserError('Must Provide an ID');
     }
@@ -83,5 +84,5 @@ export const updateComposition = {
       returning: true,
       plain: true,
     });
-  }
+  }),
 };

@@ -16,6 +16,7 @@ import {
   ImageType,
   IssueType,
   VarietyType,
+  UserType,
 } from "../types";
 
 // Queries
@@ -29,12 +30,26 @@ import {
   Image,
   Issue,
   Variety,
+  User,
 } from "../sequelize.js";
+
+export const me = {
+  type: UserType,
+  resolve: (root, { id }, context) => {
+    if (context.user) {
+      return User.findById(context.user.id).then(res => res.dataValues);
+    } else {
+      return null;
+    }
+  }
+};
 
 export const coin = {
   type: CoinType,
     args: {id: {type: new GraphQLNonNull(GraphQLID)}},
-  resolve: (root, args) => Coin.findById(args.id).then( res => res.dataValues),
+  resolve: (root, args) => {
+    return Coin.findById(args.id).then(res => res.dataValues);
+  }
 };
 
 export const coins = {

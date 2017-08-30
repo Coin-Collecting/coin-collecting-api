@@ -23,6 +23,7 @@ import {
   mints,
   variety,
   varieties,
+  me,
 } from './queries';
 
 import {
@@ -34,6 +35,8 @@ import {
   updateVariety,
   createCoin,
   deleteCoin,
+  registerUser,
+  loginUser,
 } from './mutations';
 
 // QUERIES
@@ -59,6 +62,7 @@ const QueryType = new GraphQLObjectType({
     mints,
     variety,
     varieties,
+    me,
   }),
 });
 
@@ -75,6 +79,8 @@ const MutationType = new GraphQLObjectType({
     createComposition,
     createIssue,
     updateIssue,
+    registerUser,
+    loginUser,
   }),
 });
 

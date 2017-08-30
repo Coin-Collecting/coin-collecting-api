@@ -8,6 +8,22 @@ const connection = new Sequelize(
   "coins_db", user, pass, {host, port }
 );
 
+export const User = connection.define("user", {
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  password: Sequelize.STRING,
+});
+
 export const Coin = connection.define("coin", {
   variety: Sequelize.STRING,
   year: Sequelize.STRING,
