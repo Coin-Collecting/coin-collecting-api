@@ -1,8 +1,8 @@
 // DEPENDENCIES
 import { GraphQLString, GraphQLNonNull } from 'graphql';
-const { UserError } = require('graphql-errors')
+const { UserError } = require('graphql-errors');
 import { VarietyType } from '../types';
-import { Variety } from '../sequelize';
+import { Variety } from '../models';
 import { requiresAdmin } from '../permissions';
 
 export const createVariety = {

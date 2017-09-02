@@ -7,7 +7,7 @@ import {
 } from 'graphql';
 const { UserError } = require('graphql-errors');
 import { CoinType } from '../types';
-import { Coin } from '../sequelize';
+import { Coin } from '../models';
 import { requiresAdmin } from '../permissions';
 
 export const createCoin = {

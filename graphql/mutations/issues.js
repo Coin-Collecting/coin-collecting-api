@@ -1,8 +1,8 @@
 // DEPENDENCIES
 import { GraphQLString, GraphQLNonNull } from 'graphql';
-const { UserError } = require('graphql-errors')
+const { UserError } = require('graphql-errors');
 import { IssueType } from '../types';
-import { Issue } from '../sequelize';
+import { Issue } from '../models';
 import { requiresAdmin } from '../permissions';
 
 export const createIssue = {

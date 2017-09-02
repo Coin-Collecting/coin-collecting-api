@@ -21,7 +21,7 @@ import {
   Issue,
   Image,
   Composition,
-} from '../sequelize';
+} from '../models';
 
 // VARIETY TYPE
 export const VarietyType = new GraphQLObjectType({

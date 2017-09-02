@@ -2,7 +2,7 @@
 import { GraphQLString, GraphQLNonNull } from 'graphql';
 const { UserError } = require('graphql-errors');
 import { UserType } from '../types';
-import { User } from '../sequelize';
+import { User } from '../models';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import _ from 'lodash';

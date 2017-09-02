@@ -31,7 +31,7 @@ import {
   Issue,
   Variety,
   User,
-} from "../sequelize.js";
+} from "../models.js";
 
 export const me = {
   type: UserType,

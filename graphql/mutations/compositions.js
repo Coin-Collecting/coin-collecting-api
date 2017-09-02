@@ -1,8 +1,8 @@
 // DEPENDENCIES
 import { GraphQLFloat, GraphQLString } from 'graphql';
-const { UserError } = require('graphql-errors')
+const { UserError } = require('graphql-errors');
 import { CompositionType } from '../types';
-import { Composition } from '../sequelize';
+import { Composition } from '../models';
 import { requiresAdmin } from '../permissions';
 
 function totalEqualOne(args) {
