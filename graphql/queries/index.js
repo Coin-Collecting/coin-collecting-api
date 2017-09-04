@@ -86,36 +86,36 @@ export const coins = {
   args: {
     cursor: { type: GraphQLString },
     count: { type: GraphQLInt },
-    id: { type: GraphQLString }, // TODO: use a real cursor instead
+    offset: { type: GraphQLInt },
   },
-  resolve: async (root, { count = 20, cursor = 0, id }) => {
+  resolve: async (root, { count, cursor = 0, offset = 0 }) => {
+    if (!count) count = 20;
+
     if (cursor !==0) {
       cursor = convertCursorToNodeId(cursor)
     }
 
     let coins = await Coin.findAndCountAll({
       limit: count + 1,
+      offset,
       where: {
         id: { $gt: cursor },
       },
     });
 
+    let totalCount = await Coin.count();
+
     let edges = coins.rows.map(node => ({
       node,
       cursor: convertNodeToCursor(node.id),
     }));
+
     let hasNextPage = edges.length > count;
 
-    edges.pop();
-
-    // let hasNextPage = await Coin.count({
-    //   where: {
-    //     id: { $gt: convertCursorToNodeId(edges[edges.length - 1].cursor) },
-    //   },
-    // });
+    if (hasNextPage) edges.pop();
 
     return {
-      totalCount: coins.count,
+      totalCount,
       edges,
       pageInfo: {
         startCursor: edges.length > 0 ? edges[0].cursor : null,
