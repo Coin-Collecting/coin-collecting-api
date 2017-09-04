@@ -39,6 +39,7 @@ import {
   loginUser,
 } from './mutations';
 
+
 // QUERIES
 const QueryType = new GraphQLObjectType({
   name: 'Query',

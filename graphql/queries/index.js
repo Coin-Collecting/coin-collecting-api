@@ -3,6 +3,8 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLID,
+  GraphQLInt,
+  GraphQLString,
 } from 'graphql';
 
 // TYPES
@@ -33,6 +35,11 @@ import {
   User,
 } from "../models.js";
 
+
+import { findIndex } from 'lodash';
+
+import { convertNodeToCursor, convertCursorToNodeId, Page } from '../types/pagination';
+
 export const me = {
   type: UserType,
   resolve: (root, { id }, context) => {
@@ -46,15 +53,77 @@ export const me = {
 
 export const coin = {
   type: CoinType,
-    args: {id: {type: new GraphQLNonNull(GraphQLID)}},
+  args: {id: {type: new GraphQLNonNull(GraphQLID)}},
   resolve: (root, args) => {
     return Coin.findById(args.id).then(res => res.dataValues);
   }
 };
 
-export const coins = {
+
+export const coins2 = {
   type: new GraphQLList(CoinType),
-    resolve: (root, args) => Coin.findAll()
+  args: {
+    cursor: { type: GraphQLString },
+    limit: { type: GraphQLInt },
+  },
+  resolve: async (root, { limit = 20, cursor }) => {
+
+    let coins = await Coin.findAll({
+      limit,
+      where: {
+        id: { $gt: 10 },
+      },
+    });
+
+    let newCursor = convertNodeToCursor(coins[0].id);
+    console.log({newCursor});
+    return coins;
+  }
+};
+
+export const coins = {
+  type: Page(CoinType),
+  args: {
+    cursor: { type: GraphQLString },
+    count: { type: GraphQLInt },
+    id: { type: GraphQLString }, // TODO: use a real cursor instead
+  },
+  resolve: async (root, { count = 20, cursor = 0, id }) => {
+    if (cursor !==0) {
+      cursor = convertCursorToNodeId(cursor)
+    }
+
+    let coins = await Coin.findAndCountAll({
+      limit: count + 1,
+      where: {
+        id: { $gt: cursor },
+      },
+    });
+
+    let edges = coins.rows.map(node => ({
+      node,
+      cursor: convertNodeToCursor(node.id),
+    }));
+    let hasNextPage = edges.length > count;
+
+    edges.pop();
+
+    // let hasNextPage = await Coin.count({
+    //   where: {
+    //     id: { $gt: convertCursorToNodeId(edges[edges.length - 1].cursor) },
+    //   },
+    // });
+
+    return {
+      totalCount: coins.count,
+      edges,
+      pageInfo: {
+        startCursor: edges.length > 0 ? edges[0].cursor : null,
+        endCursor: edges.length > 0 ? edges[edges.length - 1].cursor : null,
+        hasNextPage,
+      },
+    };
+  }
 };
 
 export const composition = {
