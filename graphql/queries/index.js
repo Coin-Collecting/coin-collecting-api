@@ -1,4 +1,6 @@
 // DEPENDENCIES
+import sequelize from 'sequelize';
+
 import {
   GraphQLList,
   GraphQLNonNull,
@@ -59,37 +61,22 @@ export const coin = {
   }
 };
 
-
-export const coins2 = {
-  type: new GraphQLList(CoinType),
-  args: {
-    cursor: { type: GraphQLString },
-    limit: { type: GraphQLInt },
-  },
-  resolve: async (root, { limit = 20, cursor }) => {
-
-    let coins = await Coin.findAll({
-      limit,
-      where: {
-        id: { $gt: 10 },
-      },
-    });
-
-    let newCursor = convertNodeToCursor(coins[0].id);
-    console.log({newCursor});
-    return coins;
-  }
-};
-
 export const coins = {
   type: Page(CoinType),
   args: {
     cursor: { type: GraphQLString },
     count: { type: GraphQLInt },
     offset: { type: GraphQLInt },
+    order: { type: GraphQLString },
   },
-  resolve: async (root, { count, cursor = 0, offset = 0 }) => {
+  resolve: async (root, { count, cursor = 0, offset = 0, order }) => {
     if (!count) count = 20;
+    let orderCol, orderDirection;
+
+    if (typeof order === 'string') {
+      orderCol = order.split('.')[0];
+      orderDirection = order.split('.')[1];
+    }
 
     if (cursor !==0) {
       cursor = convertCursorToNodeId(cursor)
@@ -101,6 +88,8 @@ export const coins = {
       where: {
         id: { $gt: cursor },
       },
+      order: orderCol && orderDirection ?
+        [[orderCol, orderDirection]] : undefined,
     });
 
     let totalCount = await Coin.count();
