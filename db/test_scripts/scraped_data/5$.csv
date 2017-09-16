@@ -275,3 +275,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 5 $,Indian Head,21.60,8.36,90Goldand10Copper,1915,San Francisco,164.000,
 5 $,Indian Head,21.60,8.36,90Goldand10Copper,1916,San Francisco,240.000,
 5 $,Indian Head,21.60,8.36,90Goldand10Copper,1929,Philadelphia,662.000,
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes

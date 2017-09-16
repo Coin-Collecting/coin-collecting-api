@@ -75,3 +75,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 1 $ - Gold,Large Indian Head,15.00,1.67,90Goldand10Copper,1887,Philadelphia,7.500,
 1 $ - Gold,Large Indian Head,15.00,1.67,90Goldand10Copper,1888,Philadelphia,15.501,
 1 $ - Gold,Large Indian Head,15.00,1.67,90Goldand10Copper,1889,Philadelphia,28.950,
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes

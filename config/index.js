@@ -1,11 +1,11 @@
 let config = {
   development: {
-    url: 'http://www.mycoin.store',
     db: {
+      name: 'test_db',
       host:   'localhost',
-      port:   '3301',
+      port:   '3306',
       user:     'root',
-      pass:     ''
+      pass:     'DodgerJuno21'
     },
     api: {
       url: 'http://localhost:5000/graphql',

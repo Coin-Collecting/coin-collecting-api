@@ -184,3 +184,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 2 $ 50,Indian Head,18.00,4.18,90Goldand10Copper,1927,Philadelphia,388.000,
 2 $ 50,Indian Head,18.00,4.18,90Goldand10Copper,1928,Philadelphia,416.000,
 2 $ 50,Indian Head,18.00,4.18,90Goldand10Copper,1929,Philadelphia,532.000,
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes

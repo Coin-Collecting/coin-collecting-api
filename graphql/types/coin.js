@@ -2,15 +2,11 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLBoolean,
   GraphQLFloat,
 } from 'graphql';
 
-// TYPES
-import { VarietyType, MintType } from './index.js';
-
-// QUERIES
-import { Mint, Variety } from "../models.js";
+import { IssueType } from '../types';
+import { Issue } from '../models';
 
 // COIN TYPE
 export const CoinType = new GraphQLObjectType({
@@ -22,15 +18,15 @@ export const CoinType = new GraphQLObjectType({
       description: 'Unique Key for Coin Type',
       resolve: obj => obj.id,
     },
-    variety: {
-      type: VarietyType,
+    issue: {
+      type: IssueType,
       description: '...',
-      resolve: obj => Variety.findById(obj.variety).then( article => article.dataValues)
+      resolve: obj => Issue.findById(obj.issue_id).then( res => res.dataValues),
     },
     mint: {
-      type: MintType,
+      type: GraphQLString,
       description: '...',
-      resolve: obj => Mint.findById(obj.mint).then( article => article.dataValues)
+      resolve: obj => obj.mint,
     },
     mintage: {
       type: GraphQLFloat,
@@ -41,11 +37,6 @@ export const CoinType = new GraphQLObjectType({
       type: GraphQLString,
       description: '...',
       resolve: obj => obj.year,
-    },
-    keyDate: {
-      type: GraphQLBoolean,
-      description: '...',
-      resolve: obj => obj.keyDate,
     },
     description: {
       type: GraphQLString,

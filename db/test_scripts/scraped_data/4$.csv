@@ -3,3 +3,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 4 $,Flowing Hair,22.00,0.00,90Goldand10Copper,1880,Philadelphia,15,Patterns
 4 $,Coiled Hair,22.00,0.00,90Goldand10Copper,1879,Philadelphia,10,Patterns
 4 $,Coiled Hair,22.00,0.00,90Goldand10Copper,1880,Philadelphia,10,Patterns
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes

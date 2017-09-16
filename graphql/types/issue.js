@@ -20,30 +20,40 @@ export const IssueType = new GraphQLObjectType({
       description: 'Unique Key for Coin Type',
       resolve: obj => obj.id,
     },
-    name: {
+    variety: {
       type: GraphQLString,
       description: '...',
-      resolve: obj => obj.name,
+      resolve: obj => obj.variety_name,
     },
-    description: {
+    composition: {
       type: GraphQLString,
       description: '...',
-      resolve: obj => obj.description,
+      resolve: obj => obj.composition,
+    },
+    mass: {
+      type: GraphQLString,
+      description: '...',
+      resolve: obj => obj.mass,
+    },
+    diameter: {
+      type: GraphQLString,
+      description: '...',
+      resolve: obj => obj.diameter,
     },
     denomination: {
       type: DenominationType,
       description: '...',
-      resolve: obj => Denomination.findById(obj.denomination).then( res => res.dataValues),
+      resolve: obj => Denomination.findById(obj.denomination_id).then( res => res.dataValues),
     },
     startYear: {
       type: GraphQLString,
       description: '...',
-      resolve: obj => obj.startYear,
+      resolve: obj => obj.from_year,
     },
     endYear: {
       type: GraphQLString,
       description: '...',
-      resolve: obj => obj.endYear,
+      resolve: obj => obj.to_year,
     },
   }),
 });

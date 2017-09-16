@@ -507,3 +507,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 50 ct.,Kennedy,30.60,11.34,75Copper25Nickel,2017,Philadelphia,0,
 50 ct.,Kennedy,30.60,11.34,75Copper25Nickel,2017,San Francisco,0,Only as Proof
 50 ct.,Kennedy,30.60,11.34,75Copper25Nickel,2017,San Francisco,0,Silver
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes

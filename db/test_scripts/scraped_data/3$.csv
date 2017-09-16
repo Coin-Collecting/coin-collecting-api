@@ -42,3 +42,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 3 $,Gold 3$,20.50,5.01,90Goldand10Copper,1887,Philadelphia,6.000,
 3 $,Gold 3$,20.50,5.01,90Goldand10Copper,1888,Philadelphia,5.000,
 3 $,Gold 3$,20.50,5.01,90Goldand10Copper,1889,Philadelphia,2.300,
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes

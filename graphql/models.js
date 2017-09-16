@@ -3,9 +3,9 @@ const Sequelize = require('sequelize');
 let env = process.env.NODE_ENV || 'development';
 let config = require('../config')[env];
 
-let { db: { user, pass, host, port }} = config;
+let { db: { name, user, pass, host, port }} = config;
 const connection = new Sequelize(
-  "coins_db", user, pass, {host, port }
+  name, user, pass, {host, port }
 );
 
 export const User = connection.define("user", {
@@ -24,66 +24,67 @@ export const User = connection.define("user", {
   password: Sequelize.STRING,
 });
 
+// Updated to new
 export const Coin = connection.define("coin", {
-  variety: Sequelize.STRING,
-  year: Sequelize.STRING,
+  id: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
+  issue_id: Sequelize.STRING,
   mint: Sequelize.STRING,
   mintage: Sequelize.STRING,
-  keyDate: Sequelize.BOOLEAN,
   description: Sequelize.STRING,
+}, {
+  timestamps: false
 });
 
+// Updated to new
 export const Mint = connection.define("mint", {
+  id: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
   mark: Sequelize.STRING,
   name: Sequelize.STRING,
+}, {
+  timestamps: false
 });
 
-export const Variety = connection.define("variety", {
-  issue: Sequelize.STRING,
-  designer: Sequelize.STRING,
-  images: Sequelize.STRING,
-  edge: Sequelize.STRING,
-  composition: Sequelize.STRING,
-  name: Sequelize.STRING,
-  description: Sequelize.STRING,
-  mass: Sequelize.FLOAT,
-  diameter: Sequelize.FLOAT,
-});
-
+// Updated to new
 export const Denomination = connection.define("denomination", {
+  id: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
   kind: Sequelize.STRING,
   val: Sequelize.FLOAT,
+}, {
+  timestamps: false
 });
 
-export const Edge = connection.define("edge", {
-  type: Sequelize.STRING,
-  note: Sequelize.STRING,
-});
-
+// Updated to new
 export const Designer = connection.define('designer', {
+  id: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
   name: Sequelize.STRING,
+}, {
+  timestamps: false
 });
 
 export const Issue = connection.define('issue', {
-  name: Sequelize.STRING,
-  description: Sequelize.STRING,
-  denomination: Sequelize.STRING,
-  startYear: Sequelize.STRING,
-  endYear: Sequelize.STRING,
-});
-
-export const Composition = connection.define("composition", {
-  gold: Sequelize.FLOAT,
-  silver: Sequelize.FLOAT,
-  copper: Sequelize.FLOAT,
-  nickel: Sequelize.FLOAT,
-  brass: Sequelize.FLOAT,
-  zinc: Sequelize.FLOAT,
-  steel: Sequelize.FLOAT,
-  tin: Sequelize.FLOAT,
-});
-
-export const Image = connection.define('image', {
-  obverse: Sequelize.STRING,
-  reverse: Sequelize.STRING,
+  id: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+  },
+  denomination_id: Sequelize.STRING,
+  variety_name: Sequelize.STRING,
+  from_year: Sequelize.STRING,
+  to_year: Sequelize.STRING,
+  composition: Sequelize.STRING,
+  mass: Sequelize.STRING,
+  diameter: Sequelize.STRING,
+}, {
+  timestamps: false
 });

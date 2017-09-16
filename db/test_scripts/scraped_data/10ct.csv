@@ -521,3 +521,6 @@ denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,not
 10 ct.,Roosevelt,17.90,2.27,75Copper25Nickel,2017,Philadelphia,0,
 10 ct.,Roosevelt,17.90,2.27,75Copper25Nickel,2017,San Francisco,0,Only as Proof
 10 ct.,Roosevelt,17.90,2.27,75Copper25Nickel,2017,San Francisco,0,Silver
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
+denomination,variety_name,diameter,weight,composition,year,mint_name,mintage,notes
